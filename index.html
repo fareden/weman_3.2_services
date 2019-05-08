@@ -12,14 +12,14 @@
 	  <p>A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
 	</section>
 	<section id="peticiones">
-	  <form id="peticionGet" method="GET" action="http://127.0.0.1/cgi-bin/peticion.js">
+	  <form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
 		<label for="textoGet">Esto se enviará por GET</label>
 		<input type="text" name="texto" id="textoGet" />
 		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" />
 		<input type="submit" name="saludar" value="... activar el ejercicio 2" />
 		<!-- Se pueden agregar más botones cambiando el name -->
 	  </form>
-	  <form id="peticionPost" method="POST" action="http://127.0.0.1/cgi-bin/peticion.js">
+	  <form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
 		<label for="textoGet">Esto se enviará por POST</label>
 		<textarea cols="40" rows="7" name="area"></textarea>
 		<input type="text" name="correo" placeholder="Nombre de usuario" />
