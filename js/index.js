@@ -26,3 +26,4 @@ function peticionAsync(tipo, url, parametros) {
 	//un ejemplo de petición puede ser variable=valor&otravariable=otrovalor...
 	ajax.send(encodeURI(peticion));
 }
+
