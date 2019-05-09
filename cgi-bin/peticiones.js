@@ -35,18 +35,22 @@ function palabrainversa(palabra) {
 	
 }
 
-//función mostrar saludo
+//con esta función se muestra un saludo 
+//acorde a la hora
 function mostrarSaludo(){
 	var a = new Date();
 	var hora = a.getHours();
 	if(hora >= 6 && hora <= 12) {
-	return ("Buenos días")};
+		return ("Buenos días")};
 	if(hora >= 13 && hora <= 16){
-	return ("Buenas tardes")};
+		return ("Buenas tardes")};
 	if(hora >= 17 && hora <=24) {
-	return ("Buenas noches")};
+		return ("Buenas noches")};
 }
 
+
+//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
+//solicitar dato a través de la URL
 //se obtiene la palabra que se da al presionar el primer botón
 function procesaGet(peticion) {
 	var texto = url.parse(peticion.url, true);
@@ -55,23 +59,13 @@ function procesaGet(peticion) {
 	return palabrainversa(textodata);
 	} 
 	else{
+//se obtiene la palabra que se da al presionar el primer botón
 		var textodos = url.parse(peticion.url, true);
-		var textodatosdos = textodos.query.textodos;
-	return mostrarSaludo(textodatosdos);
+		var textodatosdos = textodos.query.texto;
+	return mostrarSaludo(textodatosdos) + " " + textodatosdos;
 	}
-	
-	
-
-
-//se obtiene un saludo al presionar el botón dos
-
-	//console.log(textodos);
-	//console.log(peticion.url);
-	
 }
 
-	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-	//solicitar dato a través de la URL
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
