@@ -33,6 +33,15 @@ servidor.listen(puerto, host, () => {
 		}
 	}
 
+	function mostrarSaludo(){
+	 
+	var a = new Date();
+	var hora = a.getHours();
+	if(hora >= 6 && hora<= 12){document.write("Buenas días")};
+	if(hora >= 13 && hora<= 16){document.write("Buenas tardes")};
+	if(hora >= 17 && hora<= 24){document.write("Buenas Noches")};
+	}
+
 
 	function procesaGet(peticion) {
 		//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
@@ -43,11 +52,14 @@ servidor.listen(puerto, host, () => {
 	return voltearPalabra(textodata);
 	  
 	  //Recibirá una palabra y responderá con el correspondiente saludo
+	  //de esta manera me está regresando lo mismo (palabra invertida) en vez de (saludo) :(
+	var textodos = url.parse(peticion.url, true); //URL parse returns  a URL object
+	console.log(textodos);
+	console.log(peticion.url);
+	var textodatados = textodos.query.textodos;
+	return mostrarSaludo(textodatados);
 	
-
-
-
-};
+	};
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
