@@ -35,13 +35,39 @@ function palabrainversa(palabra) {
 	
 }
 
+//función mostrar saludo
+function mostrarSaludo(){
+	var a = new Date();
+	var hora = a.getHours();
+	if(hora >= 6 && hora <= 12) {
+	return ("Buenos días")};
+	if(hora >= 13 && hora <= 16){
+	return ("Buenas tardes")};
+	if(hora >= 17 && hora <=24) {
+	return ("Buenas noches")};
+}
+
 //se obtiene la palabra que se da al presionar el primer botón
 function procesaGet(peticion) {
 	var texto = url.parse(peticion.url, true);
-	console.log(texto);
-	console.log(peticion.url);
-	var textodata = texto.query.texto;
+	if(texto.query.saludar === undefined) {
+		var textodata = texto.query.texto;
 	return palabrainversa(textodata);
+	} 
+	else{
+		var textodos = url.parse(peticion.url, true);
+		var textodatosdos = textodos.query.textodos;
+	return mostrarSaludo(textodatosdos);
+	}
+	
+	
+
+
+//se obtiene un saludo al presionar el botón dos
+
+	//console.log(textodos);
+	//console.log(peticion.url);
+	
 }
 
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
