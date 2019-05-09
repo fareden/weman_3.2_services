@@ -26,20 +26,36 @@ servidor.listen(puerto, host, () => {
 
 function voltearPalabra(palabra) {
 	if (palabra != undefined) {
-		var str= palabra.split("") // convierte una cadena a arreglo //AQUI ESTABA EL ; 
+		var str = palabra.split(""); // convierte una cadena a arreglo //AQUI ESTABA EL ; QUE NO IBA
 		return str.reverse(palabra).join(""); //revierte el arreglo y lo regresa a cadena
 	}
-//esto no funcionaba solo por un ; de más... TEN CUIDADO :)
+//esto no funcionaba solo por un ; de más >.< ... TEN CUIDADO :)
 }
+
+function mostrarSaludo(){
+	var a = new Date();
+	var hora = a.getHours();
+	if(hora >= 6 && hora<= 12) {
+		return ("Buenos días, ")};
+	if(hora >= 13 && hora<= 16) {
+		return ("Buenas tardes, ")};
+	if(hora >= 17 && hora<= 24) {
+		return("Buenas noches, ")};
+	}
 
 
 function procesaGet(peticion) {
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-	var texto =url.parse(peticion.url, true);
-	console.log(texto); // es bueno poner el log para el registro y en este caso para estar seguras que nos sirvió jajaja
-	console.log(peticion.url);
-	var textodata = texto.query.texto;
-	return voltearPalabra(textodata);
+	var texto =url.parse(peticion.url, true); //variable primero para poder usar esa info (es lo que no entendias)
+	if (texto.query.saludar === undefined) { // con los puntitos concatenas   variable.lugar.tipo?
+		var textodata = texto.query.texto;
+		return voltearPalabra(textodata);
+	} else{
+		var textodos = url.parse(peticion.url, true); //URL parse returns  a URL object
+		var textodatados = textodos.query.texto;
+		console.log (textodatados)
+		return mostrarSaludo(textodatados) + textodatados;
+	}
 };
 
 	
