@@ -30,7 +30,7 @@ function procesaGet(peticion) {
 	var datapalabra = palabra.query; //acceder al objeto de url
 	var palabrainvertida = reverse(datapalabra.texto);
 	//console.log(palabrainvertida); revisar qué valor trae palabra invertida
-	return palabrainvertida;
+		return palabrainvertida;
 }
 
 function procesaPost(peticion) {
@@ -41,4 +41,11 @@ function reverse(str){
 	if (str !== undefined){
 		return rev = str.split('').reverse().join('');
 	}
+}
+
+function saludo(str){
+	var fecha = new Date(); //fecha que se registra del equipo
+	var hora = fecha.getHours() //obtiene la hora de la fecha registrada
+	
+
 }
