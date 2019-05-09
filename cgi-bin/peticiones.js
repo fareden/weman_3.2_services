@@ -1,5 +1,7 @@
 const svr = require('http');
 const url = require('url');
+var fs = require('fs');
+let qs=require("querystring");
 
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 const host = '127.0.0.1';
@@ -12,6 +14,17 @@ const servidor = svr.createServer((pet, resp) => {
 		respuesta = procesaGet(pet);
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
+		//yo agrgué
+		var body = "";
+        pet.on("data", function (chunk) {
+            body += chunk;
+        });
+
+        pet.on("end", function(){
+            resp.writeHead(200, { "Content-Type": "text/html" });
+            resp.end(body);
+		});
+		//fin de lo que agregué
 		respuesta = procesaPost(pet);
 		resp.statusCode = 200;
 	} else {
@@ -62,6 +75,15 @@ function procesaGet(peticion) {
 
 
 function procesaPost(peticion) {
+	var body='';
+	let par=qs.parse(body);
+	fs.readFile('textoArea.txt', par.area,function(err, data) {
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write(data);
+		res.end();
+	  });
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
+
+	
 
 }
