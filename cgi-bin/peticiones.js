@@ -37,27 +37,30 @@ servidor.listen(puerto, host, () => {
 	 
 	var a = new Date();
 	var hora = a.getHours();
-	if(hora >= 6 && hora<= 12){document.write("Buenas días")};
-	if(hora >= 13 && hora<= 16){document.write("Buenas tardes")};
-	if(hora >= 17 && hora<= 24){document.write("Buenas Noches")};
+	if(hora >= 6 && hora<= 12){return("Hola, Buenas días")};
+	if(hora >= 13 && hora<= 16){return("Hola, Buenas tardes")};
+	if(hora >= 17 && hora<= 24){return("Hola, Buenas Noches")};
 	}
 
 
-	function procesaGet(peticion) {
+	
 		//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-	var texto = url.parse(peticion.url, true); //URL parse returns  a URL object
-	console.log(texto);
-	console.log(peticion.url);
-	var textodata = texto.query.texto;
+	function procesaGet(peticion) {
+	var texto = url.parse(peticion.url, true);
+	if(texto.query.saludar === undefined) {
+		var textodata = texto.query.texto;
 	return voltearPalabra(textodata);
+	} 
 	  
 	  //Recibirá una palabra y responderá con el correspondiente saludo
 	  //de esta manera me está regresando lo mismo (palabra invertida) en vez de (saludo) :(
-	var textodos = url.parse(peticion.url, true); //URL parse returns  a URL object
-	console.log(textodos);
-	console.log(peticion.url);
-	var textodatados = textodos.query.textodos;
-	return mostrarSaludo(textodatados);
+	else{
+		var textodos = url.parse(peticion.url, true);
+		var textodatosdos = textodos.query.textodos;
+	return mostrarSaludo(textodatosdos);
+	//console.log(textodos);
+	//console.log(peticion.url);
+	}
 	
 	};
 
