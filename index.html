@@ -6,31 +6,40 @@
 	<link rel="stylesheet" href="css/index.css">
 	<script type="text/javascript" src="js/index.js"></script>
   </HEAD>
-  <BODY>
+  <BODY class = "fondo">
+  	<img class="imagen" src="css/coffee.png">
+	</section>
+	<section class="contenedor" id="peticiones">
 	<h1>Un café, por favor...</h1>
 	<section id="instrucciones">
-	  <p>A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
-	</section>
-	<section id="peticiones">
-	 	<form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGet">Esto se enviará por GET</label>
-		<input type="text" name="texto" id="textoGet" />
-		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" />
-		<!-- Se pueden agregar más botones cambiando el name -->
-	  </form>
-	  <form id="peticionGetdos" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGetdos">Regresa el saludo</label>
+	 <p>¡Vamos a probar algunas peticiones en tiempo real!</p>
+		<form id="peticionGetdos" method="GET" action="http://127.0.0.1:8080">
+	  	<br>
+		<label for="textoGetdos">Escribe tu nombre</label>
 		<input type="text" name="texto" id="textoGetdos" />
-		<input type="submit" name="saludar" value="Activar el ejercicio 2" /> <!-- Ya estaba -->
+		<input type="submit" name="saludar" value="Presiona aquí" /> <!-- Ya estaba -->
 	    </form>
 
+	 	<form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
+	 	<br>
+		<label for="textoGet">¿Cuál es tu bebida favorita?</label>
+		<input type="text" name="texto" id="textoGet" />
+		<input type="submit" name="invertir" value="Presiona aquí" />
+
+	  </form>
+
 	  <form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
+	  	<br>
 		<label for="textoGet">Esto se enviará por POST</label>
+		<br>
 		<textarea cols="40" rows="7" name="area"></textarea>
+		<br>
+		<br>
 		<input type="text" name="correo" placeholder="Nombre de usuario" />
 		<input type="password" name="pwd" placeholder="Contraseña" />
 		<input type="submit" name="enviar" value="enviar" />
 	  </form>
+	  	<br>
 	</section>
   </BODY>
 </HTML>
