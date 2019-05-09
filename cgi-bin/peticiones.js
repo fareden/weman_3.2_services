@@ -1,5 +1,7 @@
 const svr = require('http');
 const url = require('url');
+var fs = require('fs');
+var qs = require('querystring');
 //const express = require('express');
 //const app = express();
 //const port = 3000;
@@ -16,6 +18,9 @@ const servidor = svr.createServer((pet, resp) => {
 		respuesta = procesaGet(pet);
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
+		//AGREGO
+		
+        // FIN
 		respuesta = procesaPost(pet);
 		resp.statusCode = 200;
 	} else {
@@ -34,7 +39,7 @@ function procesaGet(peticion) {
 	
 	var a= url.parse(peticion.url,true); //
 	var qdata = a.query; // Acceder al objeto de url
-	//console.log(qdata); 
+	console.log(qdata); 
 	// Condicion para accionar de acuerdo al boton que apretamos, comparando nombre de los objetos de los dif botones 
 	if (qdata.invertir == 'Presiona aquí para el ejercicio 1'){
 		//qdata.texto es la propiedad del objeto url que contiene la palabra ingresada
@@ -47,8 +52,22 @@ function procesaGet(peticion) {
 }
 
 function procesaPost(peticion) {
+	//var a= url.parse(peticion.url,true); 
+	var body = "";
+        peticion.on("data", function (chunk) {
+            body += chunk;
+        });
+
+        
+	var b = qs.parse(body);
+	//var qdata = a.query;
+	//console.log(peticion); 
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
-	
+	//qdata.area
+	fs.writeFile('mynewfile1.txt', b.area , function (err) {
+  	if (err) throw err;
+  	console.log('Saved!');
+});
 }
 
 // Funcion para regresar el reverso del string  
