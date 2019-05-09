@@ -12,12 +12,15 @@
 	  <p>A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
 	</section>
 	<section id="peticiones">
-	  <form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGet">Esto se enviará por GET</label>
+	    <form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
+		<label for="textoGet">Esto se enviará por GET (palabra al revés)</label>
 		<input type="text" name="texto" id="textoGet" />
-		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" />
-		<input type="submit" name="saludar" value="... activar el ejercicio 2" />
+		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" /><br><br>	
 		<!-- Se pueden agregar más botones cambiando el name -->
+		
+		<input type="submit" name="saludar" value="... activar el ejercicio 2" /> <!-- Ya estaba -->
+		
+
 	  </form>
 	  <form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
 		<label for="textoGet">Esto se enviará por POST</label>

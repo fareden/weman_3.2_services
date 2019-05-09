@@ -1,5 +1,6 @@
 const svr = require('http');
-const usr = require('url');
+const url = require('url');
+
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 const host = '127.0.0.1';
 const puerto = '8080';
@@ -23,11 +24,32 @@ servidor.listen(puerto, host, () => {
 	console.log('La aplicación está corriendo en: ' + host + ':' + puerto);
 });
 
-function procesaGet(peticion) {
-	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-}
+	
+	//Función para voltear la palabra cuando se ingrese
+	function voltearPalabra(palabra) {
+	if (palabra != undefined) {
+		var str= palabra.split("") // convierte una cadena a arreglo
+		return str.reverse(palabra).join(""); //revierte el arreglo y lo regresa a cadena
+		}
+	}
+
+
+	function procesaGet(peticion) {
+		//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
+	var texto = url.parse(peticion.url, true); //URL parse returns  a URL object
+	console.log(texto);
+	console.log(peticion.url);
+	var textodata = texto.query.texto;
+	return voltearPalabra(textodata);
+	  
+	  //Recibirá una palabra y responderá con el correspondiente saludo
+	
+
+
+
+};
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
-	
+	//console.log(peticion.url)
 }
