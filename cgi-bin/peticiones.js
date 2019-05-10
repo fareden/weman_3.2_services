@@ -11,7 +11,7 @@ const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
-		//respuesta = procesaGet(pet);
+		respuesta = procesaGet(pet, resp);
 		console.log("Una petición");
 		console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
@@ -28,15 +28,20 @@ servidor.listen(puerto, host, () => {
 	console.log('La aplicación está corriendo en: ' + host + ':' + puerto);
 });
 
-function procesaGet(peticion) {
+function procesaGet(peticion, respuesta) {
+	if (peticion.url === "/fibonacci") {
+			var fibonacci = fibo.doFibonacci(10);
+			return fibonacci.toString();
+	}
+	}
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-	var palabra = url.parse(peticion.url, true);
-	console.log(palabra);
-	var datapalabra = palabra.query; //acceder al objeto de url
-	var palabrainvertida = reverse(datapalabra.texto);
+	//var palabra = url.parse(peticion.url, true);
+	//console.log(palabra);
+	//var datapalabra = palabra.query; //acceder al objeto de url
+	//var palabrainvertida = reverse(datapalabra.texto);
 	//console.log(palabrainvertida); revisar qué valor trae palabra invertida
-		return palabrainvertida;
-}
+	//	return palabrainvertida;
+
 
 
 
@@ -56,3 +61,4 @@ function procesaPost(peticion) {
 function saludo(str){
 	var fecha = new Date(); //fecha que se registra del equipo
 	var hora = fecha.getHours() //obtiene la hora de la fecha registrada
+}
