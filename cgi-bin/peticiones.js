@@ -42,7 +42,7 @@ function procesaGet(peticion, respuesta) {
 	}
 	else if (datapalabra.saludar == '... activar el ejercicio 2'){
 		return saludo(datapalabra.texto); // Regresa el saludo + palabra (con la funcion hecha aparte)
-} else {
+	} else {
 	if (peticion.url === "/fibonacci") {
 			var fibonacci = fibo.doFibonacci(10);
 			return fibonacci.toString();
