@@ -1,6 +1,7 @@
 	const svr = require('http');
 	const url = require('url');
 	const fs= require ('fs');
+	const fibo = require('./fibonacci.js');
 	//Aquíue jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 	const host = '127.0.0.1';
 	const puerto = '8080';
@@ -58,8 +59,8 @@
 		}
 	};
 
-		
-	function procesaPost(peticion) {
-		//Igualmente, aquí hay que obtener el valor que venga en la URL...
-		
-	}
+function procesaPost(peticion) {
+	//Igualmente, aquí hay que obtener el valor que venga en la URL...
+	console.log(peticion);
+	console.log(peticion.body);
+}
