@@ -1,7 +1,5 @@
 const svr = require('http');
-
 const url = require('url');
-
 const usr = require('url');
 const fibo = require('./fibonacci.js');
 
@@ -14,14 +12,10 @@ const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
-
 		respuesta = procesaGet(pet);
 		console.log(respuesta);
-
-		//respuesta = procesaGet(pet);
 		console.log("Una petición");
 		console.log(fibo.doFibonacci(10));
-
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
 		respuesta = procesaPost(pet);
@@ -41,22 +35,25 @@ servidor.listen(puerto, host, () => {
 function palabrainversa(palabra) {
 	if (palabra != undefined) {
 		var str = palabra.split("")
-	return str.reverse(palabra).join("");
+		return str.reverse(palabra).join("");
 	}
-	
+
 }
 
 //con esta función se muestra un saludo 
 //acorde a la hora
-function mostrarSaludo(){
+function mostrarSaludo() {
 	var a = new Date();
 	var hora = a.getHours();
-	if(hora >= 6 && hora <= 12) {
-		return ("Buenos días")};
-	if(hora >= 13 && hora <= 16){
-		return ("Buenas tardes")};
-	if(hora >= 17 && hora <=24) {
-		return ("Buenas noches")};
+	if (hora >= 6 && hora <= 12) {
+		return ("Buenos días")
+	};
+	if (hora >= 13 && hora <= 16) {
+		return ("Buenas tardes")
+	};
+	if (hora >= 17 && hora <= 24) {
+		return ("Buenas noches")
+	};
 }
 
 
@@ -65,15 +62,16 @@ function mostrarSaludo(){
 //se obtiene la palabra que se da al presionar el primer botón
 function procesaGet(peticion) {
 	var texto = url.parse(peticion.url, true);
-	if(texto.query.saludar === undefined) {
-		var textodata = texto.query.texto;
-	return palabrainversa(textodata);
-	} 
-	else{
-//se obtiene la palabra que se da al presionar el primer botón
+	var textodata = texto.query.texto;
+	if (texto.query.invertir !== undefined) {
+		return palabrainversa(textodata);
+	} else if (texto.query.numerico !== undefined) {
+		return fibo.doFibonacci(textodata).toString();
+	} else {
+		//se obtiene la palabra que se da al presionar el primer botón
 		var textodos = url.parse(peticion.url, true);
 		var textodatosdos = textodos.query.texto;
-	return mostrarSaludo(textodatosdos) + " " + textodatosdos;
+		return mostrarSaludo(textodatosdos) + " " + textodatosdos;
 	}
 }
 
