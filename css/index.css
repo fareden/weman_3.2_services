@@ -1,0 +1,22 @@
+<style>
+
+	.nombre {text-align: center;}
+	.contenedor {
+		background-color:#FCF5DA;
+   opacity:0.9; /* Opacidad 60% */
+   text-align: center;
+   	}
+   	.datos {
+   		text-align: center;
+   		background-color:#FCF5DA;
+   opacity:0.9; /* Opacidad 60% */
+   
+		}
+	.fondo {
+		text-align: center; 
+		background-color: #5D2F07;
+	}
+	script {
+		text-align: center;
+	}
+</style>

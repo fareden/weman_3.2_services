@@ -17,6 +17,19 @@ function peticionAsync(tipo, url, parametros) {
 		}
 	};
 	//El tipo puede ser GET, POST, PUT, DELETE o cualquier tipo aceptado por HTTP
+	function peticionGet (argument) {
+//solicitar dato a través de la URL
+app.get('/usuarios', (request, response) => {
+	const name = request.query.name;
+	const names = name.plit(",");
+		console.log(names);
+	const age = request.query.age;
+	const ageName = age + " " + name;
+			response.send(names);
+});
+		// body...
+	}
+
 	//La URL es a dondo hará la petición...
 	//Por último, el "true" indica que es una petición asíncrona
 	ajax.open(tipo, url, true);
