@@ -4,6 +4,8 @@ var fs = require('fs');
 let qs=require("querystring");
 const usr = require('url');
 const fibo = require('./fibonacci.js');
+const saludo = require('./saludo.js');
+const rev = require('./reverse.js');
 
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 const host = '127.0.0.1';
@@ -13,9 +15,9 @@ const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
-		//respuesta = procesaGet(pet);
+		respuesta = procesaGet(pet);
 		console.log("Una petición");
-		console.log(fibo.doFibonacci(10));
+		//console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
 		//yo agrgué
@@ -42,27 +44,15 @@ servidor.listen(puerto, host, () => {
 });
 
 //Hace el reverse de nuestra palabra 
-function palabraAlreves(palabra) {
+/*function palabraAlreves(palabra) {
 	//condición para validar que esté definido
 	if (palabra !== undefined) {
 		var str = palabra.split("")
 		return str.reverse(palabra).join("");
 	}
-};
+};*/
 
 //Funcion para agregar saludo de acuedo a la hora del día
-function saludo(palabra) {
-	var fecha = new Date(); //Obtiene la fecha
-	var hora = fecha.getHours();//Obtiene la hora
-	if (hora >= 6 && hora <= 12) {
-		return "Buenos días " + palabra;
-	} else if (hora > 12 && hora <= 18) {
-		return "Buenas tardes " + palabra;
-
-	} else {
-		return "Buenas noches " + palabra;
-	}
-}
 
 function procesaGet(peticion) {
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
@@ -70,9 +60,10 @@ function procesaGet(peticion) {
 	var q = q.query;
 	//condicionamos para saber la acción que hará en relación al botón que selecciona
 	if (q.invertir == 'Presiona aquí para el ejercicio 1') {
-		return palabraAlreves(q.texto);
+	//	return fibo.doFibonacci(q.texto).toString();
+	return rev.rev(q.texto);
 	} else if (q.saludar == '... activar el ejercicio 2') {
-		return saludo(q.texto);
+		return saludo.saludo(q.texto);
 
 	}
 }
