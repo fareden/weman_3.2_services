@@ -29,18 +29,26 @@ servidor.listen(puerto, host, () => {
 });
 
 function procesaGet(peticion, respuesta) {
+
+
+	var palabra= url.parse(peticion.url,true); //
+	var datapalabra = palabra.query; // Acceder al objeto de url
+	var palabrainvertida = reverse(datapalabra.texto);
+	// Condicion para accionar de acuerdo al boton que apretamos, comparando nombre de los objetos de los dif botones
+	if (datapalabra.invertir == 'Presiona aquí para el ejercicio 1'){
+		//qdata.texto es la propiedad del objeto url que contiene la palabra ingresada
+		//return reverse.rev(qdata.texto); // Regresa la palabra al reves (con la funcion hecha aparte)
+		return palabrainvertida;
+	}
+	else if (datapalabra.saludar == '... activar el ejercicio 2'){
+		return saludo(datapalabra.texto); // Regresa el saludo + palabra (con la funcion hecha aparte)
+} else {
 	if (peticion.url === "/fibonacci") {
 			var fibonacci = fibo.doFibonacci(10);
 			return fibonacci.toString();
 	}
 	}
-	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-	//var palabra = url.parse(peticion.url, true);
-	//console.log(palabra);
-	//var datapalabra = palabra.query; //acceder al objeto de url
-	//var palabrainvertida = reverse(datapalabra.texto);
-	//console.log(palabrainvertida); revisar qué valor trae palabra invertida
-	//	return palabrainvertida;
+}
 
 
 
@@ -58,7 +66,17 @@ function procesaPost(peticion) {
 }
 }
 
-function saludo(str){
-	var fecha = new Date(); //fecha que se registra del equipo
-	var hora = fecha.getHours() //obtiene la hora de la fecha registrada
+function saludo(str) {
+	var fecha = new Date(); // Obtiene fecha del equipo
+	var hora = fecha.getHours(); // Obtiene hora de la fecha
+	//console.log(hora);
+	if(hora >= 6 && hora <= 12){
+		return "Buenos Dias!  " + str;
+	}
+	else if(hora > 12 && hora <= 18){
+		return "Buenas Tardes!  " + str;
+	}
+	else{
+		return "Buenas Noches!  " + str;
+	}
 }
