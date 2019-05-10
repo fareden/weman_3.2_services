@@ -11,19 +11,27 @@
 	<section id="instrucciones">
 	  <p style="background-color:#9ACD32; color: white">A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
 	</section>
+	<div class= "contenido1">
 	<section id="peticiones">
 	    <form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGet">Esto se enviará por GET (palabra al revés)</label>
+		<label for="textoGet">Ingres una palabra (regresa al revés)</label>
 		<input type="text" name="texto" id="textoGet" />
-		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" /><br><br>	
+		<input type="submit" name="invertir" value="Activar ejercicio 1" /><br><br>	
 		<!-- Se pueden agregar más botones cambiando el name -->
 		</form>
 
 		<form id="peticionGetdos" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGetdos">Regresa el saludo</label>
+		<label for="textoGetdos">Ingresa palabra (regresa saludo)</label>
 		<input type="text" name="texto" id="textoGetdos" />
-		<input type="submit" name="saludar" value="Activar el ejercicio 2" /><br><br><!-- Ya estaba -->
+		<input type="submit" name="saludar" value="Activar ejercicio 2" /><br><br>
 	    </form>
+
+		<form id="peticion3" method="GET" action="http://127.0.0.1:8080">
+		<label for="textoGet3">Ingresa un número</label>
+		<input type="text" name="texto" id="textoGet3" />
+		<input type="submit" name="fibonacci" value="Activar el ejercicio 3" /><br><br>
+	    </form>
+
 
 	  <form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
 		<label for="textoGet">Esto se enviará por POST</label>

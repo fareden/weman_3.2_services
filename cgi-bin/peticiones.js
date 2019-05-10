@@ -9,13 +9,17 @@ const puerto = '8080';
 const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
+
+
 	if (pet.method == 'GET') {
 		//respuesta = procesaGet(pet);
+		respuesta = procesaGet(pet);
+		console.log(respuesta);
 		console.log("Una petición");
 		console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
-		respuesta = procesaPost(pet);
+		respuesta = procesaPost(pet);//toString convierte a cadena la respuesta
 		resp.statusCode = 200;
 	} else {
 		resp.statusCode = 404;
@@ -50,22 +54,27 @@ servidor.listen(puerto, host, () => {
 		//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
 	function procesaGet(peticion) {
 	var texto = url.parse(peticion.url, true);
-	if(texto.query.saludar === undefined) {
-		var textodata = texto.query.texto;
-	return voltearPalabra(textodata);
+	var textodata = texto.query.texto;
+	if(texto.query.invertir !== undefined) {
+		return voltearPalabra(textodata);
 	} 
-	  
-	  //Recibirá una palabra y responderá con el correspondiente saludo
-	  //de esta manera me está regresando lo mismo (palabra invertida) en vez de (saludo) :(
-	else{
-		var textodos = url.parse(peticion.url, true);
-		var textodatosdos = textodos.query.textodos;
-	return mostrarSaludo(textodatosdos);
+	else if (texto.query.fibonacci !== undefined) {
+		return fibo.doFibonacci(textodata).toString();
 	//console.log(textodos);
 	//console.log(peticion.url);
 	}
+
+	//Recibirá una palabra y responderá con el correspondiente saludo
+	 //de esta manera me está regresando lo mismo (palabra invertida) en vez de (saludo) :(
+	else{
+	var textodos = url.parse(peticion.url, true);
+	var textodatosdos = textodos.query.textodos;
+	return mostrarSaludo(textodatosdos);
+	console.log(textodos);
+	console.log(peticion.url);
+	}
 	
-	};
+};
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
