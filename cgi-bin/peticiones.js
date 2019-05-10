@@ -4,6 +4,7 @@ const fibo = require('./fibonacci.js');
 
 
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
+const express = ("express");
 const host = '127.0.0.1';
 const puerto = '8080';
 
@@ -11,7 +12,8 @@ const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
-		//respuesta = procesaGet(pet);
+		respuesta = fibo.doFibonacci(42).toString();
+		console.log(respuesta);
 		console.log("Una petición");
 		console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
