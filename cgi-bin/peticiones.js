@@ -27,14 +27,22 @@ function procesaGet(peticion) {
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
 	var palabra = url.parse(peticion.url, true);
 	console.log(palabra);
-	console.log(palabra.query.texto);
-
+	var datapalabra = palabra.query; //acceder al objeto de url
+	var palabrainvertida = reverse(datapalabra.texto);
+	//console.log(palabrainvertida); revisar qué valor trae palabra invertida
+		return palabrainvertida;
 }
 
+
+
 function procesaPost(peticion) {
+
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
 
 }
-function reverse(str){
-	 return str == str.split('').reverse().join('');
+
+	function reverse(str){
+ if (str !== undefined){
+	 return rev = str.split('').reverse().join('');
+	}
 }
