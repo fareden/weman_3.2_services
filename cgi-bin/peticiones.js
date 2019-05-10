@@ -1,5 +1,5 @@
 const svr = require('http');
-const usr = require('url');
+const url = require('url');
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 const host = '127.0.0.1';
 const puerto = '8080';
@@ -25,9 +25,15 @@ servidor.listen(puerto, host, () => {
 
 function procesaGet(peticion) {
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
+	var palabra = url.parse(peticion.url,true);//así se parcea una url
+	console.log(q);
+	//http://127.0.0.1:8080/?palindromo=nutella
+	console.log('La palabra original es ' + palabra.query.palindromo); //estoy imprimiendo
+
 }
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
-	
+
+
 }
