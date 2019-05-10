@@ -1,10 +1,15 @@
 const svr = require('http');
+
 const url = require('url');
 var fs = require('fs');
 var qs = require('querystring');
 //const express = require('express');
 //const app = express();
 //const port = 3000;
+const usr = require('url');
+const fibo = require('./fibonacci.js');
+
+
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
 const host = '127.0.0.1';
 const puerto = '8080';
@@ -15,7 +20,9 @@ const servidor = svr.createServer((pet, resp) => {
 	let respuesta = '';
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
-		respuesta = procesaGet(pet);
+		//respuesta = procesaGet(pet);
+		console.log("Una petición");
+		console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
 		//AGREGO
@@ -63,11 +70,15 @@ function procesaPost(peticion) {
 	//var qdata = a.query;
 	//console.log(peticion); 
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
+
 	//qdata.area
 	fs.writeFile('mynewfile1.txt', b.area , function (err) {
   	if (err) throw err;
   	console.log('Saved!');
 });
+	console.log(peticion);
+	console.log(peticion.body);
+
 }
 
 // Funcion para regresar el reverso del string  
