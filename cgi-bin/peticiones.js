@@ -27,7 +27,9 @@ function procesaGet(peticion) {
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
 	var palabra = url.parse(peticion.url, true);
 		console.log(palabra);
-		console.log('Palíndromo = '+ palabra.query.texto);
+		console.log(peticion.url);
+	var palíndromo = palabra.query.palabra;
+		return invertirTexto (palíndromo);
 
 }
 
