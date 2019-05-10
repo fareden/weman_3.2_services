@@ -36,13 +36,14 @@ function procesaGet(peticion, respuesta) {
 	var palabrainvertida = reverse(datapalabra.texto);
 	// Condicion para accionar de acuerdo al boton que apretamos, comparando nombre de los objetos de los dif botones
 	if (datapalabra.invertir == 'Presiona aquí para el ejercicio 1'){
-		//qdata.texto es la propiedad del objeto url que contiene la palabra ingresada
-		//return reverse.rev(qdata.texto); // Regresa la palabra al reves (con la funcion hecha aparte)
+		//datapalabra.texto es la propiedad del objeto url que contiene la palabra ingresada
+		//return reverse.rev(datapalabra.texto); // Regresa la palabra al reves (con la funcion hecha aparte)
 		return palabrainvertida;
 	}
 	else if (datapalabra.saludar == '... activar el ejercicio 2'){
 		return saludo(datapalabra.texto); // Regresa el saludo + palabra (con la funcion hecha aparte)
 	} else {
+		// implementacion de fibonacci estableciendo otro endpoint
 	if (peticion.url === "/fibonacci") {
 			var fibonacci = fibo.doFibonacci(10);
 			return fibonacci.toString();
