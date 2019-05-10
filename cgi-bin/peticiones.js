@@ -1,5 +1,5 @@
 const svr = require('http');
-const usr = require('url');
+const url = require('url');
 const fibo = require('./fibonacci.js');
 
 //Aquí hay que jalar los 'require' adicionales que puedan hacer falta como FileSystem, etc.
@@ -27,12 +27,52 @@ servidor.listen(puerto, host, () => {
 	console.log('La aplicación está corriendo en: ' + host + ':' + puerto);
 });
 
-function procesaGet(peticion) {
-	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
-}
+	
+	//Función para voltear la palabra cuando se ingrese
+	function voltearPalabra(palabra) {
+	if (palabra != undefined) {
+		var str= palabra.split("") // convierte una cadena a arreglo
+		return str.reverse(palabra).join(""); //revierte el arreglo y lo regresa a cadena
+		}
+	}
+
+	function mostrarSaludo(){
+	 
+	var a = new Date();
+	var hora = a.getHours();
+	if(hora >= 6 && hora<= 12){return("Hola, Buenas días")};
+	if(hora >= 13 && hora<= 16){return("Hola, Buenas tardes")};
+	if(hora >= 17 && hora<= 24){return("Hola, Buenas Noches")};
+	}
+
+
+	
+		//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
+	function procesaGet(peticion) {
+	var texto = url.parse(peticion.url, true);
+	if(texto.query.saludar === undefined) {
+		var textodata = texto.query.texto;
+	return voltearPalabra(textodata);
+	} 
+	  
+	  //Recibirá una palabra y responderá con el correspondiente saludo
+	  //de esta manera me está regresando lo mismo (palabra invertida) en vez de (saludo) :(
+	else{
+		var textodos = url.parse(peticion.url, true);
+		var textodatosdos = textodos.query.textodos;
+	return mostrarSaludo(textodatosdos);
+	//console.log(textodos);
+	//console.log(peticion.url);
+	}
+	
+	};
 
 function procesaPost(peticion) {
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
+
+	//console.log(peticion.url)
+
 	console.log(peticion);
 	console.log(peticion.body);
+
 }
