@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <HTML>
-  <HEAD>
+
+<HEAD>
 	<title>Servicios y conexiones</title>
 	<meta charset="UTF8" />
 	<link rel="stylesheet" href="css/index.css">
 	<script type="text/javascript" src="js/index.js"></script>
-  </HEAD>
-  <BODY>
-	<h1>Un café, por favor...</h1>
-	<section id="instrucciones">
-	  <p>A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
-	</section>
-	<section id="peticiones">
-	  <form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
-		<label for="textoGet">Esto se enviará por GET</label>
-		<input type="text" name="texto" id="textoGet" />
-		<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" />
-		<input type="submit" name="saludar" value="... activar el ejercicio 2" />
-		<!-- Se pueden agregar más botones cambiando el name -->
-	  </form>
-	  <form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
-		<label for="textoGet">Esto se enviará por POST</label>
-		<textarea cols="40" rows="7" name="area"></textarea>
-		<input type="text" name="correo" placeholder="Nombre de usuario" />
-		<input type="password" name="pwd" placeholder="Contraseña" />
-		<input type="submit" name="enviar" value="enviar" />
-	  </form>
-	</section>
-  </BODY>
+</HEAD>
+
+<BODY>
+	<div class="title-container">
+		<img id="logo" src="https://i.pinimg.com/564x/33/ea/a9/33eaa95a7723c8ebe09c881ba459a26a.jpg">
+		<h1 class="title">Un café, por favor...</h1>
+	</div>
+	<div class="inst">
+		<section id="instrucciones">
+			<p class="instruccion">A continuación tenemos la oportunidad de probar algunas peticiones en tiempo real.</p>
+		</section>
+	</div>
+	<div class="contenido">
+		<section id="peticiones">
+			<form id="peticionGet" method="GET" action="http://127.0.0.1:8080">
+				<hr>
+				<label for="textoGet">¡Esto se enviará por método GET!</label> </br>
+				<input type="text" name="texto" id="textoGet" /> </br>
+				<input type="submit" name="invertir" value="Presiona aquí para el ejercicio 1" />
+				<input type="submit" name="saludar" value="... activar el ejercicio 2" />
+				<!-- Se pueden agregar más botones cambiando el name -->
+			</form>
+			<form id="peticionPost" method="POST" action="http://127.0.0.1:8080">
+				<hr>
+				<label for="textoGet">¡Esto se enviará por método POST!</label></br>
+				<textarea cols="40" rows="7" name="area"></textarea> </br>
+				<input type="text" name="correo" placeholder="Nombre de usuario" />
+				<input type="password" name="pwd" placeholder="Contraseña" />
+				<input type="submit" name="enviar" value="enviar" />
+				<hr>
+			</form>
+		</section>
+	</div>
+</BODY>
+
 </HTML>
