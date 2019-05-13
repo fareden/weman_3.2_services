@@ -2,7 +2,9 @@ exports.doFibonacci = function(saltos) {
 	return laFibo(saltos);
 }
 
+
 function laFibo(saltos) {
+	if (saltos !== undefined){
 	if (saltos === 1)  {
 		return [0, 1];
 	} else {
@@ -10,4 +12,5 @@ function laFibo(saltos) {
 		s.push(s[s.length - 1] + s[s.length - 2]);
 		return s;
 	}
+}
 }

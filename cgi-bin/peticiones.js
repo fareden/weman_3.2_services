@@ -1,7 +1,7 @@
 const svr = require('http');
 
 const url = require('url');
-var fs = require('fs');
+var fs = require('fs'); // filesystem
 var qs = require('querystring');
 //const express = require('express');
 //const app = express();
@@ -22,7 +22,7 @@ const servidor = svr.createServer((pet, resp) => {
 	resp.setHeader('Content-Type', 'text/plain');
 	if (pet.method == 'GET') {
 		respuesta = procesaGet(pet);
-		console.log("Una petición");
+		//console.log("Una petición");
 		//console.log(fibo.doFibonacci(10));
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
@@ -43,41 +43,47 @@ servidor.listen(puerto, host, () => {
 
 
 function procesaGet(peticion) {
-	
 	var a= url.parse(peticion.url,true); //
 	var qdata = a.query; // Acceder al objeto de url
-	//console.log(qdata); 
+	console.log(qdata); 
 	// Condicion para accionar de acuerdo al boton que apretamos, comparando nombre de los objetos de los dif botones 
 	if (qdata.invertir == 'Presiona aquí para el ejercicio 1'){
 		//qdata.texto es la propiedad del objeto url que contiene la palabra ingresada
-		//return reverse.rev(qdata.texto); // Regresa la palabra al reves (con la funcion hecha aparte) 
+		//return reverse.rev(qdata.texto); // Regresa la palabra al reves (
 		return fibo.doFibonacci(qdata.texto).toString();
 	}
 	else if (qdata.saludar == '... activar el ejercicio 2'){
-		return sal.saludar(qdata.texto); // Regresa el saludo + palabra (con la funcion hecha aparte) 
+		return sal.saludar(qdata.texto); // Regresa el saludo + palabra 
 	}
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
 }
 
-function procesaPost(peticion) {
+function procesaPost(peticion,resp) {
 	//var a= url.parse(peticion.url,true); 
-	var body = "";
-        peticion.on("data", function (chunk) {
-            body += chunk;
-        });
-
-        
-	var b = qs.parse(body);
-	//var qdata = a.query;
-	//console.log(peticion); 
-	//Igualmente, aquí hay que obtener el valor que venga en la URL...
-
-	//qdata.area
-	fs.writeFile('mynewfile1.txt', b.area , function (err) {
-  	if (err) throw err;
-  	console.log('Saved!');
+	//const data =  peticion.body;
+	//console.log(data)
+	const FORM_URLENCODED = 'application/x-www-form-urlencoded';
+    if(peticion.headers['content-type'] === FORM_URLENCODED) {
+	let body = '';
+    peticion.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+	});
+	
+    peticion.on('end', () => {
+		console.log(qs.parse(body));
+		//a=qs.parse(body);
+		//resp.end('ok');
+		fs.writeFile('peticiones.txt', body, function (err) {
+			if (err) throw err;
+			console.log('Saved!');
+	  });
+	
 });
-	console.log(peticion);
-	console.log(peticion.body);
 
+	}
+	else {
+        callback(null);
+    }
+	//Igualmente, aquí hay que obtener el valor que venga en la URL...
+	
 }
