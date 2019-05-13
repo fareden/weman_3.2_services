@@ -70,12 +70,14 @@ function procesaPost(peticion, resp) {
 		});
 
 		peticion.on('end', () => {
-			console.log(qs.parse(body));
+			b = qs.parse(body)
+			console.log(b);
 			//a=qs.parse(body);
 			//resp.end('ok');
-			fs.writeFile('peticiones.txt', body, function (err) {
+			fs.writeFile('peticiones.txt', b.area, function (err) {
 				if (err) throw err;
 				console.log('Saved!');
+				return usuario(b.correo, b.pwd)
 			});
 
 		});
@@ -85,4 +87,22 @@ function procesaPost(peticion, resp) {
 	}
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
 
+}
+
+function usuario(usuario, contra) {
+	const user = {
+		usuario: "raquelsaave",
+		contra: "12345"
+	}
+
+	if (b.correo == user.usuario && b.pwd == user.contra) {
+		console.log("Usuario Correcto")
+		resp = "Usuario Correcto"
+		return resp
+	}
+	else {
+		console.log("Usuario Incorrecto")
+		resp = "Usuario Incorrecto"
+		return resp
+	}
 }

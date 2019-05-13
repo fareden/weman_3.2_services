@@ -1,1 +1,3 @@
-area=Hello&correo=raquel&pwd=&enviar=enviar
+Intento
+archivo 
+peticiones
