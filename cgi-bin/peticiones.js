@@ -27,8 +27,8 @@ const servidor = svr.createServer((pet, resp) => {
 		resp.statusCode = 200;
 	} else if (pet.method == 'POST') {
 		//AGREGO
-		
-        // FIN
+
+		// FIN
 		respuesta = procesaPost(pet);
 		resp.statusCode = 200;
 	} else {
@@ -43,47 +43,46 @@ servidor.listen(puerto, host, () => {
 
 
 function procesaGet(peticion) {
-	var a= url.parse(peticion.url,true); //
+	var a = url.parse(peticion.url, true); //
 	var qdata = a.query; // Acceder al objeto de url
-	console.log(qdata); 
+	console.log(qdata);
 	// Condicion para accionar de acuerdo al boton que apretamos, comparando nombre de los objetos de los dif botones 
-	if (qdata.invertir == 'Presiona aquí para el ejercicio 1'){
+	if (qdata.invertir == 'Presiona aquí para el ejercicio 1') {
 		//qdata.texto es la propiedad del objeto url que contiene la palabra ingresada
 		//return reverse.rev(qdata.texto); // Regresa la palabra al reves (
 		return fibo.doFibonacci(qdata.texto).toString();
 	}
-	else if (qdata.saludar == '... activar el ejercicio 2'){
+	else if (qdata.saludar == '... activar el ejercicio 2') {
 		return sal.saludar(qdata.texto); // Regresa el saludo + palabra 
 	}
 	//Aquí necesitan analizar la URL de la petición, ver qué botón se presionó y actuar en consecuencia.
 }
 
-function procesaPost(peticion,resp) {
+function procesaPost(peticion, resp) {
 	//var a= url.parse(peticion.url,true); 
 	//const data =  peticion.body;
 	//console.log(data)
 	const FORM_URLENCODED = 'application/x-www-form-urlencoded';
-    if(peticion.headers['content-type'] === FORM_URLENCODED) {
-	let body = '';
-    peticion.on('data', chunk => {
-        body += chunk.toString(); // convert Buffer to string
-	});
-	
-    peticion.on('end', () => {
-		console.log(qs.parse(body));
-		//a=qs.parse(body);
-		//resp.end('ok');
-		fs.writeFile('peticiones.txt', body, function (err) {
-			if (err) throw err;
-			console.log('Saved!');
-	  });
-	
-});
+	if (peticion.headers['content-type'] === FORM_URLENCODED) {
+		let body = '';
+		peticion.on('data', chunk => {
+			body += chunk.toString(); // convert Buffer to string
+		});
 
+		peticion.on('end', () => {
+			console.log(qs.parse(body));
+			//a=qs.parse(body);
+			//resp.end('ok');
+			fs.writeFile('peticiones.txt', body, function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			});
+
+		});
 	}
 	else {
-        callback(null);
-    }
+		callback(null);
+	}
 	//Igualmente, aquí hay que obtener el valor que venga en la URL...
-	
+
 }
